@@ -12,12 +12,14 @@ const HomePage: React.FC = () => {
   const [viewState, setViewState] = useState<ViewState>('initial');
   const [generatedRecipes, setGeneratedRecipes] = useState<Recipe[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    event.target.value = '';
     setViewState('loading');
     setError(null);
 
@@ -45,7 +47,11 @@ const HomePage: React.FC = () => {
   };
 
   const handleCameraClick = () => {
-    fileInputRef.current?.click();
+    cameraInputRef.current?.click();
+  };
+
+  const handleGalleryClick = () => {
+    galleryInputRef.current?.click();
   };
 
   const handleBackToHome = () => {
@@ -107,7 +113,7 @@ const HomePage: React.FC = () => {
                      <span>Fotografar Geladeira</span>
                    </button>
                    <button 
-                     onClick={handleCameraClick} 
+                     onClick={handleGalleryClick} 
                      className="w-full text-primary font-semibold py-3 px-6 border-2 border-primary rounded-xl flex items-center justify-center space-x-2 hover:bg-primary hover:text-white transition-all duration-200"
                    >
                      <UploadIcon className="w-4 h-4" />
@@ -186,7 +192,15 @@ const HomePage: React.FC = () => {
     <div className="bg-gradient-to-br from-primary to-primary-dark min-h-screen">
       <input
         type="file"
-        ref={fileInputRef}
+        ref={cameraInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        capture="environment"
+        className="hidden"
+      />
+      <input
+        type="file"
+        ref={galleryInputRef}
         onChange={handleFileChange}
         accept="image/*"
         className="hidden"
