@@ -20,7 +20,7 @@ export const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [activePage, setActivePage] = useState<Page>('home');
-  const apiKey = process.env.GEMINI_API_KEY || '';
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
   const [recipes, setRecipes] = useLocalStorage<Recipe[]>('recipes-history', []);
   const [analyses, setAnalyses] = useLocalStorage<Analysis[]>('analyses-history', []);
   const [preferences, setPreferences] = useLocalStorage<UserPreferences>('user-preferences', {
