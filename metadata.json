@@ -1,0 +1,7 @@
+{
+  "name": "ReceitIA",
+  "description": "Um assistente nutricional e de receitas com tecnologia de IA. Tire uma foto da sua geladeira para receber sugestões personalizadas de receitas ou tire uma foto da sua refeição para uma análise nutricional instantânea.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
