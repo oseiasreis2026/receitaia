@@ -113,7 +113,7 @@ export const generateRecipesFromImage = async (
 
     const response: GenerateContentResponse = await ai.models.generateContent({
         model: "gemini-2.5-flash",
-        contents: { parts: [imagePart, textPart] },
+        contents: [imagePart, textPart],
         config: {
             systemInstruction: getSystemInstructionForRecipes(preferences),
             responseMimeType: "application/json",
@@ -143,7 +143,7 @@ export const analyzeDishFromImage = async (
 
     const response: GenerateContentResponse = await ai.models.generateContent({
         model: "gemini-2.5-flash",
-        contents: { parts: [imagePart, textPart] },
+        contents: [imagePart, textPart],
         config: {
             systemInstruction:
                 "You are a nutritional expert named ReceitIA. Respond strictly in Brazilian Portuguese (Português-BR). Analyze the provided image of a meal. Estimate its ingredients, calculate the macronutrients (protein, carbs, fat), total calories, and assign a 'Health Score' from 0-100 based on its nutritional balance and processing level. Also, describe the processing level (e.g., 'Minimamente processado', 'Processado'). Respond in JSON format according to the provided schema.",
